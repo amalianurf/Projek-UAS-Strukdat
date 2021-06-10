@@ -1,40 +1,44 @@
 struct Node{
     std::string gejala;
+    bool isLeaf;
     Node* left;
     Node* right;
+
+    Node(std::string gejala, bool isLeaf){
+        this->gejala = gejala;
+        this->isLeaf = isLeaf;
+        this->left = nullptr;
+        this->right = nullptr;
+    }
 };
 
 using ptr = Node*;
 using tree = ptr;
-tree root;
+//tree root;
 
 tree createTree(){
     return nullptr;
 }
 
-ptr createElement(std::string gejala){
-    ptr newNode = new Node;
-    newNode->gejala = gejala;
-    newNode->left = nullptr;
-    newNode->right = nullptr;
-    return newNode;
-}
+ptr isitree(){
+    createTree();
+    ptr root = new Node("GJ04", 0);
 
-void insert(tree &root, ptr newElement, bool condition) {
-    if(root == nullptr){
-        root = newElement;
-    } else if(!condition){
-        insert(root->left, newElement, condition);
-    } else{
-        insert(root->right, newElement, condition);
-  }
-}
+    ptr temp = root;
+    temp->right = new Node("GG02", 1);
+    temp->left = new Node("GJ05", 0);
 
-ptr search(tree &root, std::string gejala, bool condition) {
-  if(root == nullptr || root->gejala == gejala){
+    temp = temp->left;
+    temp->right = new Node("GG01", 1);
+    temp->left = new Node("GJ20", 0);
+
+    temp = temp->left;
+    temp->right = new Node("GG03", 1);
+    temp->left = new Node("GJ01", 0);
+
+    temp = temp->left;
+    temp->right = new Node("GG03", 1);
+    temp->left = new Node("GG01", 1);
+
     return root;
-  } if(!condition){
-    return search(root->right, gejala, condition);
-  }
-  return search(root->left, gejala, condition);
 }
