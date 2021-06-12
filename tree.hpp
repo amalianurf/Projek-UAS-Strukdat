@@ -14,7 +14,6 @@ struct Node{
 
 using ptr = Node*;
 using tree = ptr;
-//tree root;
 
 tree createTree(){
     return nullptr;
