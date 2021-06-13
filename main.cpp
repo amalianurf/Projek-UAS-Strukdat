@@ -3,10 +3,11 @@
 #include <windows.h>
 #include "tree.hpp"
 
-void batas();
+void batas(int batas);
 void error();
 void menu();
 void ulang();
+void pohon();
 std::string printLeaf(const tree &root, const int con1, const int con2, const int con3, const int con4);
 void test(const tree &root);
 
@@ -14,14 +15,14 @@ int main(){
     menu();
 }
 
-void batas(){
-    std::cout << std::setw(45) << std::setfill('=') << "\n";
+void batas(int batas){
+    std::cout << std::setw(batas) << std::setfill('=') << "\n";
 }
 
 void error(){
-    batas();
+    batas(45);
     std::cout << "Error: Input yang Anda masukkan salah!!\n";
-    batas();
+    batas(45);
     system("pause");
     menu();
 }
@@ -30,16 +31,19 @@ void menu(){
     ptr root = isitree();
     int input;
     system("cls");
-    batas();
+    batas(45);
     std::cout << "\tJUDUL APLIKASI\n";
-    batas();
+    batas(45);
     std::cout << "[1] Mulai Test\n"
-                 "[2] Keluar\n"
+                 "[2] Pohon Keputusan\n"
+                 "[3] Keluar\n"
                  "Pilih (1/2) : ";
     std::cin >> input;
     if(input == 1){
         test(root);
     } else if(input == 2){
+        pohon();
+    } else if(input == 3){
         exit(0);
     } else{
         error();
@@ -64,46 +68,36 @@ void ulang(){
     }
 }
 
-std::string printLeaf(const tree &root, const int con1, const int con2, const int con3, const int con4){
-    if(root->isLeaf){
-        if(root->gejala == "GG01"){
-            return "Gangguan Perilaku";
-        } else if(root->gejala == "GG02"){
-            return "Gangguan Komunikasi";
-        } else{
-            return "Gangguan Interaksi Sosial";
-        }
-    }
-
-    if(root->gejala == "GJ04"){
-        if(con1 == 2){
-            return printLeaf(root->left, con1, con2, con3, con4);
-        }
-        return printLeaf(root->right, con1, con2, con3, con4);
-    }
-
-    if(root->gejala == "GJ05"){
-        if(con2 == 2){
-            return printLeaf(root->left, con1, con2, con3, con4);
-        }
-        return printLeaf(root->right, con1, con2, con3, con4);
-    }
-
-    if(root->gejala == "GJ20"){
-        if(con3 == 2){
-            return printLeaf(root->left, con1, con2, con3, con4);
-        }
-        return printLeaf(root->right, con1, con2, con3, con4);
-    }
-
-    if(root->gejala == "GJ01"){
-        if(con4 == 2){
-            return printLeaf(root->left, con1, con2, con3, con4);
-        }
-        return printLeaf(root->right, con1, con2, con3, con4);
-    }
-
-    return "Gangguan/Gejala tidak ditemukan!";
+void pohon(){
+    system("cls");
+    batas(60);
+    std::cout << "                      POHON KEPUTUSAN\n";
+    batas(60);
+    std::cout << "\n                                                              Tidak dapat merespon\n"
+                 "                                                              jika dipanggil orang\n"
+                 "                                                       _________________|_________________\n"
+                 "                                                      |                                   |\n"
+                 "                                                    Tidak                                Ya\n"
+                 "                                                      |                                   |\n"
+                 "                                      Suka melakukan kegiatan/gerakan                     |\n"
+                 "                                            secara berulang-ulang                Gangguan Komunikasi\n"
+                 "                                     _________________|_______________\n"
+                 "                                    |                                 |\n"
+                 "                                  Tidak                              Ya\n"
+                 "                                    |                                 |\n"
+                 "                      Tidak tertarik dengan orang lain        Gangguan Perilaku\n"
+                 "                       _____________|________________\n"
+                 "                      |                              |\n"
+                 "                    Tidak                           Ya\n"
+                 "                      |                              |\n"
+                 "         Tidak memiliki kontak mata        Gangguan Interaksi Sosial  \n"
+                 "         _____________|_____________\n"
+                 "        |                           |\n"
+                 "      Tidak                        Ya\n"
+                 "        |                           |\n"
+                 "Gangguan Perilaku     Gangguan Interaksi Sosial\n\n";
+    system("pause");
+    menu();
 }
 
 void test(const tree &root){
@@ -143,9 +137,9 @@ void test(const tree &root){
     }
 
     std::cout << "\n";
-    batas();
+    batas(45);
     std::cout << "Hasil Anda : " << printLeaf(root, con1, con2, con3, con4) << "\n";
-    batas();
+    batas(45);
     system("pause");
     ulang();
 }

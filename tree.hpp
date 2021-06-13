@@ -41,3 +41,45 @@ ptr isitree(){
 
     return root;
 }
+
+std::string printLeaf(const tree &root, const int con1, const int con2, const int con3, const int con4){
+    if(root->isLeaf){
+        if(root->gejala == "GG01"){
+            return "Gangguan Perilaku";
+        } else if(root->gejala == "GG02"){
+            return "Gangguan Komunikasi";
+        } else{
+            return "Gangguan Interaksi Sosial";
+        }
+    }
+
+    if(root->gejala == "GJ04"){
+        if(con1 == 2){
+            return printLeaf(root->left, con1, con2, con3, con4);
+        }
+        return printLeaf(root->right, con1, con2, con3, con4);
+    }
+
+    if(root->gejala == "GJ05"){
+        if(con2 == 2){
+            return printLeaf(root->left, con1, con2, con3, con4);
+        }
+        return printLeaf(root->right, con1, con2, con3, con4);
+    }
+
+    if(root->gejala == "GJ20"){
+        if(con3 == 2){
+            return printLeaf(root->left, con1, con2, con3, con4);
+        }
+        return printLeaf(root->right, con1, con2, con3, con4);
+    }
+
+    if(root->gejala == "GJ01"){
+        if(con4 == 2){
+            return printLeaf(root->left, con1, con2, con3, con4);
+        }
+        return printLeaf(root->right, con1, con2, con3, con4);
+    }
+
+    return "Gangguan/Gejala tidak ditemukan!";
+}
