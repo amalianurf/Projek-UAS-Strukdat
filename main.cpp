@@ -32,7 +32,7 @@ void menu(){
     int input;
     system("cls");
     batas(45);
-    std::cout << "\tJUDUL APLIKASI\n";
+    std::cout << "   APLIKASI DETEKSI DINI GANGGUAN AUTISME\n";
     batas(45);
     std::cout << "[1] Mulai Test\n"
                  "[2] Pohon Keputusan\n"
