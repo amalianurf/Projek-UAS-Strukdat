@@ -37,7 +37,7 @@ void menu(){
     std::cout << "[1] Mulai Test\n"
                  "[2] Pohon Keputusan\n"
                  "[3] Keluar\n"
-                 "Pilih (1/2) : ";
+                 "Pilih (1/2/3) : ";
     std::cin >> input;
     if(input == 1){
         test(root);
